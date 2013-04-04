@@ -2,7 +2,7 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://jeremysaenz.github.com
+url: http://codegangsta.io
 title: Code Gangsta
 subtitle: Rants and raves from a certified G.
 author: Jeremy
@@ -85,8 +85,8 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name:
-disqus_show_comment_count: false
+disqus_short_name: codegangsta
+disqus_show_comment_count: true
 
 # Google Analytics
 google_analytics_tracking_id:
