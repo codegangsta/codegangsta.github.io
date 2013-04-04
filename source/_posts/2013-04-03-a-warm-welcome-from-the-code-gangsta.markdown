@@ -36,5 +36,5 @@ At The Engine Co. our driving philosophy is to use the best tool for the job. Bu
 
 Today I am touching many different technologies, and thus I change my alias from the **Flex Gangsta** to **Code Gangsta**. The purpose of this blog is to document some solutions I discover in my day to day. 
 
-Thanks for joining me on this adventure, now let write some software!
+Thanks for joining me on this adventure, now let's write some software!
 
