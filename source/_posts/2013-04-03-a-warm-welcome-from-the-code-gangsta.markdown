@@ -12,7 +12,7 @@ The day finally has arrived. I am starting a blog.
 
 For those of you who do not know me, my name is Jeremy Saenz. I have been building software since graduating high school. Discovering that I did not want to attend college, I naturally picked up software engineering as a passionate craft that I care deeply about.
 
-Back in 2008 I was just starting so wade (drown perhaps is the better word) through the vast sea of knowledge that is the software engineering industry. I began my journey by programming Adobe Flex apps with Actionscript 3. To ease the pain of entering an industry completely void of prior relationships and contacts, I decided to create a gangsta-rap video that was related to tech (Flex specifically).
+Back in 2008 I was just starting to wade (drown perhaps is the better word) through the vast sea of knowledge that is the software engineering industry. I began my journey by programming Adobe Flex apps with Actionscript 3. To ease the pain of entering an industry completely void of prior relationships and contacts, I decided to create a gangsta-rap video that was related to tech (Flex specifically).
 
 Thus, the Flex Gangsta was born!
 
