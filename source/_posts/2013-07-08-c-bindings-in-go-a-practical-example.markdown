@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "C Bindings in Go: A Practical Example Part 1"
+title: "Practical Go: C Bindings"
 date: 2013-07-08 06:40
 comments: true
-categories: golang cgo go spotify libspotify libmockspotify
+categories: golang cgo go spotify libspotify libmockspotify practicalgo
 ---
 I have been playing with [Go](http://golang.org/) lately. The language itself has a lot going for it, one of which is a decent set of interop with existing C code. Today I am going to walk you through a practical example of how this is done by showing some code that I have been working on lately with Go.
 
