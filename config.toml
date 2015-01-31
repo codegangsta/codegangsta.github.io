@@ -10,6 +10,8 @@ name = "codegangsta"
 theme = "theme-base-0d"
 tagline = "Crafting code since 2008"
 highlight = "github"
+github = "github.com/codegangsta"
+gravatarHash = "20aaf9520b0aeef2beb28afc25c61784"
 
 [permalinks]
 # Optional. Change the permalink format for the 'post' content type.
