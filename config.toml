@@ -1,4 +1,17 @@
-baseurl = "http://yourSiteHere"
+baseurl = "http://codegangsta.io"
 languageCode = "en-us"
-title = "my new hugo site"
+title = "CodeGangsta"
 theme = "hyde-x"
+
+[author]
+name = "codegangsta"
+
+[params]
+theme = "theme-base-0d"
+tagline = "Crafting code since 2008"
+highlight = "github"
+
+[permalinks]
+# Optional. Change the permalink format for the 'post' content type.
+# The format shown here is the same one Jekyll/Octopress uses by default.
+post = "/blog/:year/:month/:day/:title/"
