@@ -2,7 +2,7 @@
 title = "My Thoughts on Martini"
 categories = ["golang", "web", "martini", "negroni"]
 date = "2014-05-19T10:51:49-08:00"
-keywords = []
+keywords = ["go", "golang", "web", "martini", "negroni"]
 +++
  
 It's never easy to take honest criticism, especially when the target of the criticism is considered your 'baby'. Earlier this week, [Stephen Searles posted an entirely honest review](http://stephensearles.com/?p=254) of Martini and how, despite the popularity and hype, there are numerous reasons why Martini should not be used.
@@ -36,7 +36,7 @@ In most situations, the performance overhead is negligible compared to the other
 ## So... Now What?
 
 
-{% img http://makeameme.org/media/created/who-am-i-bmup6m.png %}
+{{% figure src="http://makeameme.org/media/created/who-am-i-bmup6m.png" %}}
 
 
 If you are using Martini, please continue using it. If you are interested in using Martini, it is still a fantastic framework and arguably the most productive set of tools for building web applications in Go. It is well designed and has a great community around it. Martini is not going away, and I'm not going to stop supporting Martini.

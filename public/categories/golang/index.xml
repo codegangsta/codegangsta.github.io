@@ -49,7 +49,14 @@
 
 &lt;h2 id=&#34;so-now-what:be092bb3a2ecafb4d15d135163b61d62&#34;&gt;So&amp;hellip; Now What?&lt;/h2&gt;
 
-&lt;p&gt;{% img &lt;a href=&#34;http://makeameme.org/media/created/who-am-i-bmup6m.png&#34;&gt;http://makeameme.org/media/created/who-am-i-bmup6m.png&lt;/a&gt; %}&lt;/p&gt;
+&lt;p&gt;
+&lt;figure &gt;
+    
+        &lt;img src=&#34;http://makeameme.org/media/created/who-am-i-bmup6m.png&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+&lt;/p&gt;
 
 &lt;p&gt;If you are using Martini, please continue using it. If you are interested in using Martini, it is still a fantastic framework and arguably the most productive set of tools for building web applications in Go. It is well designed and has a great community around it. Martini is not going away, and I&amp;rsquo;m not going to stop supporting Martini.&lt;/p&gt;
 
