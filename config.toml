@@ -8,7 +8,7 @@ name = "Jeremy Saenz"
 
 [params]
 theme = "theme-base-0d"
-tagline = "Crafting code since 2008"
+tagline = "I build tools that make software development awesome!"
 highlight = "github"
 github = "github.com/codegangsta"
 

@@ -2,18 +2,26 @@ html {
   font-family: "Lato", sans-serif
 }
 
+.content {
+  padding-top: 3em;
+}
+
 .theme-base-0d .topbar {
   background-color: #2e3840;
 }
 
 .topbar {
   position: relative;
-  padding: 6em 0;
+  padding: 3em 0 6em 0;
   background: url("/images/cover.jpg");
   background-size: cover;
   zoom: 1;
   width: 100%;
   overflow: hidden;
+}
+
+.topbar a {
+  color: #3DB3E6;
 }
 
 .topbar .color-overlay {
@@ -46,13 +54,13 @@ html {
 
 .topbar .title h4 {
   color: #FFF;
-  font-size: 1.625em;
+  font-size: 1.3em;
   font-weight: 300;
   margin: 1.33em 0;
 }
 
 .topbar-small {
-  padding: 2em 0;
+  padding: 0 0 2em 0;
 }
 
 .topbar-small .title h1 {
