@@ -44,10 +44,17 @@ html {
   color: #FFF;
 }
 
-
 .topbar .title h4 {
   color: #FFF;
   font-size: 1.625em;
   font-weight: 300;
   margin: 1.33em 0;
+}
+
+.topbar-small {
+  padding: 2em 0;
+}
+
+.topbar-small .title h1 {
+  font-size: 3em;
 }
