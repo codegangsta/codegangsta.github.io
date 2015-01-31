@@ -2,6 +2,10 @@
  * Tweaks and overrides to hyde.css
  */
 
+html {
+  font-family: "Lato", sans-serif
+}
+
 .sidebar-about h1 {
   color: #fff;
   margin-top: 0;

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Go on CodeGangsta</title>
+    <title>Go on codegangsta.io</title>
     <link>http://localhost:1313/categories/go/</link>
-    <description>Recent content in Go on CodeGangsta</description>
+    <description>Recent content in Go on codegangsta.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 19 May 2014 10:51:49 -0800</lastBuildDate>

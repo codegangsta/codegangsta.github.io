@@ -1,0 +1,53 @@
+html {
+  font-family: "Lato", sans-serif
+}
+
+.theme-base-0d .topbar {
+  background-color: #2e3840;
+}
+
+.topbar {
+  position: relative;
+  padding: 6em 0;
+  background: url("/images/cover.jpg");
+  background-size: cover;
+  zoom: 1;
+  width: 100%;
+  overflow: hidden;
+}
+
+.topbar .color-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.9;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=" 90 ")";
+  filter: alpha(opacity=90);
+  zoom: 1;
+  background: #2e3840;
+}
+
+.topbar .container {
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 0 1em;
+  max-width: 64em;
+  text-align: center;
+}
+
+.topbar .title h1 {
+  font-size: 4em;
+  font-weight: 700;
+  color: #FFF;
+}
+
+
+.topbar .title h4 {
+  color: #FFF;
+  font-size: 1.625em;
+  font-weight: 300;
+  margin: 1.33em 0;
+}
