@@ -2,6 +2,7 @@ baseurl = "http://codegangsta.io"
 languageCode = "en-us"
 title = "codegangsta.io"
 theme = "codegangsta"
+disqusShortname = "codegangsta"
 
 [author]
 name = "Jeremy Saenz"

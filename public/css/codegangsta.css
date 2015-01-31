@@ -3,7 +3,15 @@ html {
 }
 
 .content {
-  padding-top: 3em;
+  padding-top: 2em;
+}
+
+.content h1 {
+  font-size: 3em;
+}
+
+.label {
+  font-size: 0.6em;
 }
 
 .theme-base-0d .topbar {
@@ -22,6 +30,7 @@ html {
 
 .topbar a {
   color: #3DB3E6;
+  color: #FFF;
 }
 
 .topbar .color-overlay {
@@ -59,10 +68,29 @@ html {
   margin: 1.33em 0;
 }
 
+.topbar .separator {
+  /* color: #FFF; */
+}
+
+.topbar {
+  border-top: 5px solid;
+  border-color: #ea5343;
+}
+
 .topbar-small {
   padding: 0 0 2em 0;
 }
 
 .topbar-small .title h1 {
   font-size: 3em;
+}
+
+.menu {
+  color: #FFF;
+}
+
+@media (max-width: 38em) {
+  .topbar .title h1 {
+    font-size: 3em;
+  }
 }

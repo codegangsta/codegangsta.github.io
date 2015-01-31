@@ -1,6 +1,6 @@
 +++
 title = "My Thoughts on Martini"
-categories = ["go", "golang", "web", "martini", "negroni"]
+categories = ["golang", "web", "martini", "negroni"]
 date = "2014-05-19T10:51:49-08:00"
 keywords = []
 +++

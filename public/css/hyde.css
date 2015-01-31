@@ -213,6 +213,9 @@ a.sidebar-nav-item:focus {
 }
 .theme-base-0d .content a,
 .theme-base-0d .related-posts li a:hover {
+  color: #ea5343;
+}
+.theme-base-0d .post-title a {
   color: #2e3840;
 }
 
