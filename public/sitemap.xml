@@ -2,43 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://codegangsta.io/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2015-01-31T11:25:15-08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://codegangsta.io/about/</loc>
+    <loc>http://localhost:1313/about/</loc>
     <lastmod>2015-01-31T11:25:15-08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://codegangsta.io/blog/2014/05/19/my-thoughts-on-martini/</loc>
+    <loc>http://localhost:1313/blog/2014/05/19/my-thoughts-on-martini/</loc>
     <lastmod>2014-05-19T10:51:49-08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://codegangsta.io/blog/2013/07/21/creating-cli-applications-in-go/</loc>
+    <loc>http://localhost:1313/blog/2013/07/21/on-distributing-command-line-applications-why-i-switched-from-ruby-to-go/</loc>
     <lastmod>2013-07-21T16:28:53-08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://codegangsta.io/blog/2013/07/11/practical-go-build-tags/</loc>
+    <loc>http://localhost:1313/blog/2013/07/11/practical-go-build-tags/</loc>
     <lastmod>2013-07-11T16:23:17-08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://codegangsta.io/blog/2013/07/08/practical-go-c-bindings/</loc>
+    <loc>http://localhost:1313/blog/2013/07/08/practical-go-c-bindings/</loc>
     <lastmod>2013-07-08T16:17:55-08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://codegangsta.io/blog/2013/04/04/dependency-injection-in-ruby/</loc>
+    <loc>http://localhost:1313/blog/2013/04/04/dependency-injection-in-ruby/</loc>
     <lastmod>2013-04-04T16:03:55-08:00</lastmod>
   </url>
   
   <url>
-    <loc>http://codegangsta.io/blog/2013/04/03/a-warm-welcome-from-the-code-gangsta/</loc>
+    <loc>http://localhost:1313/blog/2013/04/03/a-warm-welcome-from-the-code-gangsta/</loc>
     <lastmod>2013-04-03T15:58:01-08:00</lastmod>
   </url>
   
