@@ -1,6 +1,7 @@
 +++
 title = "On Distributing Command line Applications: Why I switched from Ruby to Go"
 date = "2013-07-21T16:28:53-08:00"
+slug = "creating-cli-applications-in-go"
 keywords = ["go", "golang", "cli", "ruby"]
 categories = ["go", "golang", "cli", "ruby"]
 +++

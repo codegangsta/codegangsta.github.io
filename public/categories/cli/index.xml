@@ -11,10 +11,10 @@
     
     <item>
       <title>On Distributing Command line Applications: Why I switched from Ruby to Go</title>
-      <link>http://localhost:1313/blog/2013/07/21/on-distributing-command-line-applications-why-i-switched-from-ruby-to-go/</link>
+      <link>http://localhost:1313/blog/2013/07/21/creating-cli-applications-in-go/</link>
       <pubDate>Sun, 21 Jul 2013 16:28:53 -0800</pubDate>
       
-      <guid>http://localhost:1313/blog/2013/07/21/on-distributing-command-line-applications-why-i-switched-from-ruby-to-go/</guid>
+      <guid>http://localhost:1313/blog/2013/07/21/creating-cli-applications-in-go/</guid>
       <description>
 
 &lt;p&gt;For as long as I have been using it, my go-to language for creating CLI applications was Ruby. After all, Ruby is a robust, mature language with many things to make us developers want to gyrate with joy (okay maybe that is just me).&lt;/p&gt;

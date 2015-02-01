@@ -112,10 +112,10 @@ func main() {
     
     <item>
       <title>On Distributing Command line Applications: Why I switched from Ruby to Go</title>
-      <link>http://localhost:1313/blog/2013/07/21/on-distributing-command-line-applications-why-i-switched-from-ruby-to-go/</link>
+      <link>http://localhost:1313/blog/2013/07/21/creating-cli-applications-in-go/</link>
       <pubDate>Sun, 21 Jul 2013 16:28:53 -0800</pubDate>
       
-      <guid>http://localhost:1313/blog/2013/07/21/on-distributing-command-line-applications-why-i-switched-from-ruby-to-go/</guid>
+      <guid>http://localhost:1313/blog/2013/07/21/creating-cli-applications-in-go/</guid>
       <description>
 
 &lt;p&gt;For as long as I have been using it, my go-to language for creating CLI applications was Ruby. After all, Ruby is a robust, mature language with many things to make us developers want to gyrate with joy (okay maybe that is just me).&lt;/p&gt;
@@ -288,10 +288,10 @@ session := Session{}
     
     <item>
       <title>Practical Go: C Bindings</title>
-      <link>http://localhost:1313/blog/2013/07/08/practical-go-c-bindings/</link>
+      <link>http://localhost:1313/blog/2013/07/08/c-bindings-in-go-a-practical-example/</link>
       <pubDate>Mon, 08 Jul 2013 16:17:55 -0800</pubDate>
       
-      <guid>http://localhost:1313/blog/2013/07/08/practical-go-c-bindings/</guid>
+      <guid>http://localhost:1313/blog/2013/07/08/c-bindings-in-go-a-practical-example/</guid>
       <description>
 
 &lt;p&gt;I have been playing with &lt;a href=&#34;http://golang.org/&#34;&gt;Go&lt;/a&gt; lately. The language itself has a lot going for it, one of which is a decent set of interop with existing C code. Today I am going to walk you through a practical example of how this is done by showing some code that I have been working on lately with Go.&lt;/p&gt;

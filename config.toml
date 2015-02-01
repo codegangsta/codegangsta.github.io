@@ -16,4 +16,4 @@ github = "github.com/codegangsta"
 [permalinks]
 # Optional. Change the permalink format for the 'post' content type.
 # The format shown here is the same one Jekyll/Octopress uses by default.
-post = "/blog/:year/:month/:day/:slug/"
+post = "/blog/:year/:month/:day/:filename/"
