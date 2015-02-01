@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Dependency Injection in Ruby &middot; Jeremy Saenz</title>
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/poole.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde-x.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/codegangsta.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/highlight/github.css">
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link href="/favicon.png" rel="icon">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="codegangsta.io &middot; Jeremy Saenz" />
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  
+</head>
+<body class="theme-base-0d">
+
+<div class="topbar topbar-small">
+  <div class="color-overlay"></div>
+  <div class="container">
+    <div class="title">
+      <h1>CODE GANGSTA</h1>
+    </div>
+
+    <div class="menu">
+      <a href="http://localhost:1313/">Blog</a> ·
+      <a href="http://localhost:1313/">Tools</a> ·
+      <a href="http://localhost:1313/">Screencasts</a> ·
+      <a href="http://localhost:1313/">Books</a> ·
+      <a href="http://localhost:1313/">Talks</a> ·
+      <a href="http://localhost:1313/">About</a>
+    </div>
+
+  </div>
+</div>
+
+<div class="content container">
+  <div class="post">
+    <h1>Dependency Injection in Ruby</h1>
+    <span class="post-date">Apr 4, 2013 &middot; 4 minute read &middot; <a href="http://localhost:1313/blog/2013/04/04/dependency-injection-in-ruby/#disqus_thread">Comments</a>
+    
+    <br/>
+    
+    
+    </span>
+    
+
+<p>Dynamically typed languages like Ruby are an interesting beast when it comes to dependency injection. The topic itself has been debated in the Ruby community every once in a while:</p>
+
+<p><blockquote class="twitter-tweet"><p>Dependency injection is not a virtue in Ruby <a href="http://t.co/4w2qSCfo" title="http://bit.ly/ZtzSz9">bit.ly/ZtzSz9</a>, and then there&rsquo;s the immediate criticism: <a href="http://t.co/Q1O9TvGm" title="http://bit.ly/ZtzQHw">bit.ly/ZtzQHw</a></p>&mdash; Nicola Iarocci (@nicolaiarocci) <a href="https://twitter.com/nicolaiarocci/status/288215967622914048">January 7, 2013</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+<p>Let me start off by first saying that dependency injection is not a catch-all for managing dependencies in Ruby. There are many other ways to abstract hard dependencies within your code. Today I want to specifically talk about programming to interfaces in Ruby and how to solve the “dependencies” problem in that space.</p>
+
+<h2 id="programming-to-interfaces:35dd294c487b2537d2d6fea3e0d5eb17">Programming to Interfaces</h2>
+
+<p>A common argument is that Ruby does not need dependency injection because Module mixins exist in the language. Module mixins surely allow implementation details to be abstracted and shared so that change can happen mostly in one place. A Ruby developer must think of the intensions of the Class/Implementation they are composing to correctly identify the solution to managing dependencies.</p>
+
+<h2 id="the-module-approach:35dd294c487b2537d2d6fea3e0d5eb17">The Module Approach</h2>
+
+<p>Modules provide a clean solution to resolving dependencies, the basic premise looks like this:</p>
+
+<pre><code class="language-ruby">module Downloadable
+  def download(url)
+    # download the url and location
+  end
+end
+</code></pre>
+
+<pre><code class="language-ruby">class SDK
+  include Downloadable
+
+  def install
+    download(url)
+    ...
+  end 
+end
+</code></pre>
+
+<p>This is a great example of how module mixins can be an excellent solution to our problem. <code>Downloadable</code> is completely reusable and can be safely mixed into any other class we want.</p>
+
+<h3 id="the-danger:35dd294c487b2537d2d6fea3e0d5eb17">The Danger</h3>
+
+<p>The dangerous part about all of this is the <em>abuse</em> cases with mixins. When we type:</p>
+
+<pre><code class="language-ruby">include Downloadable
+</code></pre>
+
+<p>We are essentially allowing the <code>Downloadable</code> module to add any number of methods it desires to our class. This pattern can easily veer codebases out of control if it is not monitored properly, so it is not quite a <em>silver bullet</em> for dependency resolution in Ruby.</p>
+
+<h2 id="the-attr-inject-approach:35dd294c487b2537d2d6fea3e0d5eb17">The attr_inject Approach</h2>
+
+<p>Finding out the Modules was a solution to a particular problem and not an solution to the entire problem space encouraged me to go out an write a elegant and Rubyesque dependency injection framework. I call it <a href="https://github.com/jeremysaenz/attr_inject">attr_inject</a>.</p>
+
+<p>Before I go into details I want to spend a little time sharing what I think is a great explanation of the problem we are seeking to solve:</p>
+
+<blockquote>
+<p>Using dependency injection to shape code relies on your ability to recognize that the responsibility for knowing the name of a class and the responsibility for knowing the name of a message to send to that class may belong in different objects. -Sandi Metz. Practical Object-Oriented Design in Ruby</p>
+</blockquote>
+
+<p>I love this statement because it essentially says that when I explicitly want to inject something I have to stop thinking of the dependency as a class and start thinking of it as an interface. For instance:</p>
+
+<pre><code class="language-ruby">class User
+  def name
+    &quot;foobar&quot;
+  end
+
+  def age
+    22
+  end
+end
+</code></pre>
+
+<pre><code class="language-ruby">class Project
+  def initialize(user)
+    @user = user
+  end
+
+  def username
+    @user.name
+  end
+end
+</code></pre>
+
+<p>As far as <code>Project</code> is concerned, <code>@user</code> is an object that responds to the <code>name</code> message. This makes dependency injection shine when  used properly.</p>
+
+<h3 id="flexible-di:35dd294c487b2537d2d6fea3e0d5eb17">Flexible DI</h3>
+
+<p>In <em>Practical Object-Oriented Design in Ruby</em>, Sandi walks the reader through a real world example, progressively improving how dependencies are managed through injection. Here is a sample of the ultimate solution:</p>
+
+<pre><code class="language-ruby">def initialize(args)
+  @foo = args.fetch(:foo, 40)
+  @bar = args.fetch(:bar, 18)
+  @baz = args[:baz]
+end
+</code></pre>
+
+<p>Injecting through the constructor with a hash provides immense flexibility and allows the class to not care about the Module or Class name of the dependency. It also solves the problem of <em>argument order dependencies</em>.</p>
+
+<h3 id="one-step-further:35dd294c487b2537d2d6fea3e0d5eb17">One Step Further</h3>
+
+<p>The <a href="https://github.com/jeremysaenz/attr_inject">attr_inject</a> gem takes this pattern one step further. Examine the code below:</p>
+
+<pre><code class="language-ruby">def Project
+  attr_inject :user
+  attr_inject :sdk
+
+  def initialize(args)
+    inject_attributes(args)
+  end
+end
+</code></pre>
+
+<p>This snippet of code injects the <code>args</code> hash into the <code>Project</code>’s <code>user</code> and <code>sdk</code> attributes. If the <code>user</code> and <code>sdk</code> attributes do not exist, <code>inject_attributes</code> will throw an exception by default. This of course can be configured:</p>
+
+<pre><code class="language-ruby">attr_inject :user, :required =&gt; false
+</code></pre>
+
+<p>or</p>
+
+<pre><code class="language-ruby">attr_inject :user, :default =&gt; some_default
+</code></pre>
+
+<h3 id="even-further:35dd294c487b2537d2d6fea3e0d5eb17">Even Further&hellip;</h3>
+
+<p>If you are like me and you don’t always want to pass arguments into the object initializer or you want to inject dependencies whenever you want, you can use the <code>Injector</code> class.</p>
+
+<pre><code class="language-ruby">class Main
+  include Inject
+
+  def initialize()
+    injector = Injector.new
+    injector.map :user, User.new
+    injector.map :sdk, SDK.new  
+    
+    injector.apply Project.new
+  end
+end
+</code></pre>
+
+<pre><code class="language-ruby">class Project
+  attr_inject :user
+  attr_inject :sdk
+end
+</code></pre>
+
+<h3 id="factories:35dd294c487b2537d2d6fea3e0d5eb17">Factories</h3>
+
+<p>Sometimes the dependency would like to know some information about the object it is injected into, or the dependency needs to be created specially for each injection. This is where factories come into play.</p>
+
+<pre><code class="language-ruby">injector = Injector.new
+injector.factory :logger do |target|
+  Logger.new target
+end
+</code></pre>
+
+<p>Our logger object will be created upon every injection. You can request the logger object on your class the same way as any other dependency:</p>
+
+<pre><code class="language-ruby">attr_inject :logger
+</code></pre>
+
+<h2 id="conclusion:35dd294c487b2537d2d6fea3e0d5eb17">Conclusion</h2>
+
+<p><a href="https://github.com/jeremysaenz/attr_inject">attr_inject</a> is an elegant and scalable way to manage dependencies. Documentation is a bit sparse at the moment and I hope to get a tutorial up and going very soon. Please feel free to fork it on Github an play around with it. Let me know what you think!</p>
+
+  </div>
+  <div id="disqus_thread"></div>
+</div>
+
+
+<script type="text/javascript">
+var disqus_shortname = "codegangsta";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+
+
+
+<script type="text/javascript">
+    var disqus_shortname = "codegangsta";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script src="http://localhost:1313/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
+</html>
