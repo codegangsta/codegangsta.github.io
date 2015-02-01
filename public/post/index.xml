@@ -111,6 +111,144 @@ func main() {
     </item>
     
     <item>
+      <title>Practical Go: C Bindings</title>
+      <link>http://localhost:1313/blog/2013/07/08/practical-go-c-bindings/</link>
+      <pubDate>Mon, 08 Jul 2013 16:17:55 -0800</pubDate>
+      
+      <guid>http://localhost:1313/blog/2013/07/08/practical-go-c-bindings/</guid>
+      <description>
+
+&lt;p&gt;I have been playing with &lt;a href=&#34;http://golang.org/&#34;&gt;Go&lt;/a&gt; lately. The language itself has a lot going for it, one of which is a decent set of interop with existing C code. Today I am going to walk you through a practical example of how this is done by showing some code that I have been working on lately with Go.&lt;/p&gt;
+
+&lt;h2 id=&#34;the-simplest-hello-world:039e70d11edfc9565aa0772639c60162&#34;&gt;The Simplest Hello World&lt;/h2&gt;
+
+&lt;p&gt;Assuming you have your &lt;a href=&#34;http://golang.org/doc/code.html&#34;&gt;Go development environment all set up,&lt;/a&gt; go ahead and create a new go file with the following contents:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+func main() {
+  println(&amp;quot;Hello world&amp;quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Running this should obviously print &amp;ldquo;Hello world&amp;rdquo;. Let&amp;rsquo;s move on!&lt;/p&gt;
+
+&lt;h2 id=&#34;using-libspotify:039e70d11edfc9565aa0772639c60162&#34;&gt;Using libspotify&lt;/h2&gt;
+
+&lt;p&gt;Lets start creating some C bindings for libspotify! libspotify is a C api distributed by Spotify that basically allows us to do everything a typical spotify app can do; log in, play, music, manipulate playlists - all available to us with libspotify.&lt;/p&gt;
+
+&lt;p&gt;For the sake of keeping this post short and to the point, we will just be creating a &lt;code&gt;sp_session&lt;/code&gt; object. This session will lay some groundwork for us to log in and do the fun stuff libspotify allows us to do. Why don&amp;rsquo;t we dive in:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+type Session struct {
+  session *C.sp_session
+}
+
+func main() {
+  println(&amp;quot;Hello world&amp;quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Running this will result in an error&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;./bindings.go:4: undefined: C
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is because we actually need to use some special magic that Go provides for us, the C package.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+import &amp;quot;C&amp;quot;
+
+type Session struct {
+  session *C.sp_session
+}
+
+func main() {
+  println(&amp;quot;Hello world&amp;quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This gives us a different error:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;error: &#39;sp_session&#39; undeclared (first use in this function)
+error: (Each undeclared identifier is reported only once
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Cool, so it sees the C package, but sp_session doesn&amp;rsquo;t exist. This is because we need to include libspotify using the &lt;code&gt;#include&lt;/code&gt; directive for the C preprocessor. First make sure you have libspotify installed. On a Mac you can run &lt;code&gt;brew install libspotify&lt;/code&gt;. Now try to run the following code:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+/*
+#include &amp;lt;libspotify/api.h&amp;gt;
+*/
+import &amp;quot;C&amp;quot;
+
+type Session struct {
+  session *C.sp_session
+}
+
+func main() {
+  println(&amp;quot;Hello world&amp;quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This should compile and run since &lt;code&gt;sp_session&lt;/code&gt; now resides in the global C namespace! This works great for things that exist in the header, but it breaks down when we try to initialize our session:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+/*
+#include &amp;lt;libspotify/api.h&amp;gt;
+*/
+import &amp;quot;C&amp;quot;
+import &amp;quot;unsafe&amp;quot;
+
+type Session struct {
+  session *C.sp_session
+}
+
+func main() {
+  key := &amp;quot;appkey_good&amp;quot;
+  session := Session{}
+  appkey := C.CString(key)
+  appkey_size := len(key)
+
+  var config = C.sp_session_config {
+    api_version:          C.SPOTIFY_API_VERSION,
+    cache_location:       C.CString(&amp;quot;.spotify/&amp;quot;),
+    settings_location:    C.CString(&amp;quot;.spotify/&amp;quot;),
+    user_agent:           C.CString(&amp;quot;spotify for go&amp;quot;),
+    application_key:      unsafe.Pointer(appkey),
+    application_key_size: C.size_t(appkey_size)
+  }
+
+  C.sp_session_create(&amp;amp;config, &amp;amp;session.session)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Will result in the following error:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Undefined symbols for architecture x86_64:
+  &amp;quot;_sp_session_create&amp;quot;, referenced from:
+      __cgo_90280c6a3021_Cfunc_sp_session_create in bindings.cgo2.o
+     (maybe you meant: __cgo_90280c6a3021_Cfunc_sp_session_create)
+ld: symbol(s) not found for architecture x86_64
+collect2: ld returned 1 exit status
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is because we didn&amp;rsquo;t link libspotify. This is an easy fix, add this in the comment above &lt;code&gt;import &amp;quot;C&amp;quot;&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;#cgo LDFLAGS: -lspotify.12
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Your code should compile and link fine. You will get a SIGSEGV in your application, this is becuase we specified a bogus app key. We will cover this in detail during Part 2 of &lt;em&gt;C Bindings in Go: A Practical Example&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Until next time!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Dependency Injection in Ruby</title>
       <link>http://localhost:1313/blog/2013/04/04/dependency-injection-in-ruby/</link>
       <pubDate>Thu, 04 Apr 2013 16:03:55 -0800</pubDate>
