@@ -111,6 +111,108 @@ func main() {
     </item>
     
     <item>
+      <title>Practical Go: Build Tags</title>
+      <link>http://localhost:1313/blog/2013/07/11/practical-go-build-tags/</link>
+      <pubDate>Thu, 11 Jul 2013 16:23:17 -0800</pubDate>
+      
+      <guid>http://localhost:1313/blog/2013/07/11/practical-go-build-tags/</guid>
+      <description>
+
+&lt;p&gt;In our &lt;a href=&#34;http://localhost:1313/blog/2013/07/08/practical-go-c-bindings/&#34;&gt;last post&lt;/a&gt; we wrote a simple set of bindings for libspotify in Go. By the end of the post we had an example compiling, but we had a bad API key for our spotify application. One obvious way to recify this would be to grab an API key if you are a Spotfy Premium user. Another workaround is to use a &lt;em&gt;mock&lt;/em&gt; library to make sure the code is working the way we want. We will link this mock library with &lt;strong&gt;Build tags.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;mocking-spotify:213ae47dc89dbd60677f5d7fdbfb82a7&#34;&gt;Mocking Spotify&lt;/h2&gt;
+
+&lt;p&gt;Start by installing libmockspotify:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;git clone git@github.com:mopidy/libmockspotify.git
+cd libmockspotify
+./autogen.sh
+./configure
+make
+sudo make install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Once libmockspotify is installed, we can link to that instead of the real libspotify:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+/*
+#include &amp;lt;libspotify/api.h&amp;gt;
+#cgo LDFLAGS: -lmockspotify.2
+*/
+import &amp;quot;C&amp;quot;
+import &amp;quot;unsafe&amp;quot;
+
+type Session struct {
+  session *C.sp_session
+}
+
+func main() {
+key := &amp;quot;appkey_good&amp;quot;
+session := Session{}
+  appkey := C.CString(key)
+  appkey_size := len(key)
+
+  var config = C.sp_session_config {
+    api_version:          C.SPOTIFY_API_VERSION,
+    cache_location:       C.CString(&amp;quot;.spotify/&amp;quot;),
+    settings_location:    C.CString(&amp;quot;.spotify/&amp;quot;),
+    user_agent:           C.CString(&amp;quot;spotify for go&amp;quot;),
+    application_key:      unsafe.Pointer(appkey),
+    application_key_size: C.size_t(appkey_size)
+  }
+
+  C.sp_session_create(&amp;amp;config, &amp;amp;session.session)
+  println(&amp;quot;Session created!&amp;quot;)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The following code should output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;Session created!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;using-build-tags:213ae47dc89dbd60677f5d7fdbfb82a7&#34;&gt;Using build tags&lt;/h2&gt;
+
+&lt;p&gt;It&amp;rsquo;s great that we have libmockspotify for testing purposes, but it doesn&amp;rsquo;t make sense to always mock spotify in our project. This is where &lt;strong&gt;Build Tags&lt;/strong&gt; come into play. We can use build tags to conditionally choose which library to link to.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s link both libspotify and libmockspotify in our file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;/*
+#include &amp;lt;libspotify/api.h&amp;gt;
+#cgo LDFLAGS: -lmockspotify.2
+#cgo LDFLAGS: -lspotify.12
+*/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This approach obviously will not work as is, so we will instead link each library conditionally based on the &lt;em&gt;mock&lt;/em&gt; build take that we will define:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;/*
+#include &amp;lt;libspotify/api.h&amp;gt;
+#cgo mock LDFLAGS: -lmockspotify.2
+#cgo !mock LDFLAGS: -lspotify.12
+*/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will link libmockspotify when the &lt;em&gt;mock&lt;/em&gt; build tag is defined, otherwise we will use the real libspotify. So then how do we define build tags? Simple:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;go run -tags mock myfile.go
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thats enough for today, have fun with build tags! I will leave you with one more pro tip!&lt;/p&gt;
+
+&lt;p&gt;In my &lt;code&gt;~/.vim&lt;/code&gt; folder I have a ftplugin for Go that includes a binding for running tests:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-text&#34;&gt;nmap &amp;lt;Leader&amp;gt;t :!go test -tags test &amp;lt;cr&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You see how I include the &lt;em&gt;test&lt;/em&gt; tag in all of my test running? This makes it convenient when linking mock libraries specific for running tests!&lt;/p&gt;
+
+&lt;p&gt;Until next time!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Practical Go: C Bindings</title>
       <link>http://localhost:1313/blog/2013/07/08/practical-go-c-bindings/</link>
       <pubDate>Mon, 08 Jul 2013 16:17:55 -0800</pubDate>
