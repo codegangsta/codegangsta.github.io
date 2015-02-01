@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Golang on codegangsta.io</title>
-    <link>http://localhost:1313/categories/golang/</link>
+    <link>http://codegangsta.io/categories/golang/</link>
     <description>Recent content in Golang on codegangsta.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 19 May 2014 10:51:49 -0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/golang/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://codegangsta.io/categories/golang/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>My Thoughts on Martini</title>
-      <link>http://localhost:1313/blog/2014/05/19/my-thoughts-on-martini/</link>
+      <link>http://codegangsta.io/blog/2014/05/19/my-thoughts-on-martini/</link>
       <pubDate>Mon, 19 May 2014 10:51:49 -0800</pubDate>
       
-      <guid>http://localhost:1313/blog/2014/05/19/my-thoughts-on-martini/</guid>
+      <guid>http://codegangsta.io/blog/2014/05/19/my-thoughts-on-martini/</guid>
       <description>
 
 &lt;p&gt;It&amp;rsquo;s never easy to take honest criticism, especially when the target of the criticism is considered your &amp;lsquo;baby&amp;rsquo;. Earlier this week, &lt;a href=&#34;http://stephensearles.com/?p=254&#34;&gt;Stephen Searles posted an entirely honest review&lt;/a&gt; of Martini and how, despite the popularity and hype, there are numerous reasons why Martini should not be used.&lt;/p&gt;
@@ -112,10 +112,10 @@ func main() {
     
     <item>
       <title>On Distributing Command line Applications: Why I switched from Ruby to Go</title>
-      <link>http://localhost:1313/blog/2013/07/21/on-distributing-command-line-applications-why-i-switched-from-ruby-to-go/</link>
+      <link>http://codegangsta.io/blog/2013/07/21/creating-cli-applications-in-go/</link>
       <pubDate>Sun, 21 Jul 2013 16:28:53 -0800</pubDate>
       
-      <guid>http://localhost:1313/blog/2013/07/21/on-distributing-command-line-applications-why-i-switched-from-ruby-to-go/</guid>
+      <guid>http://codegangsta.io/blog/2013/07/21/creating-cli-applications-in-go/</guid>
       <description>
 
 &lt;p&gt;For as long as I have been using it, my go-to language for creating CLI applications was Ruby. After all, Ruby is a robust, mature language with many things to make us developers want to gyrate with joy (okay maybe that is just me).&lt;/p&gt;

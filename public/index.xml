@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>codegangsta.io</title>
-    <link>http://localhost:1313/</link>
+    <link>http://codegangsta.io/</link>
     <description>Recent content on codegangsta.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 31 Jan 2015 11:25:15 -0800</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://codegangsta.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>about</title>
-      <link>http://localhost:1313/about/</link>
+      <link>http://codegangsta.io/about/</link>
       <pubDate>Sat, 31 Jan 2015 11:25:15 -0800</pubDate>
       
-      <guid>http://localhost:1313/about/</guid>
+      <guid>http://codegangsta.io/about/</guid>
       <description>&lt;p&gt;Hello world! This is my first hugo page&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>My Thoughts on Martini</title>
-      <link>http://localhost:1313/blog/2014/05/19/my-thoughts-on-martini/</link>
+      <link>http://codegangsta.io/blog/2014/05/19/my-thoughts-on-martini/</link>
       <pubDate>Mon, 19 May 2014 10:51:49 -0800</pubDate>
       
-      <guid>http://localhost:1313/blog/2014/05/19/my-thoughts-on-martini/</guid>
+      <guid>http://codegangsta.io/blog/2014/05/19/my-thoughts-on-martini/</guid>
       <description>
 
 &lt;p&gt;It&amp;rsquo;s never easy to take honest criticism, especially when the target of the criticism is considered your &amp;lsquo;baby&amp;rsquo;. Earlier this week, &lt;a href=&#34;http://stephensearles.com/?p=254&#34;&gt;Stephen Searles posted an entirely honest review&lt;/a&gt; of Martini and how, despite the popularity and hype, there are numerous reasons why Martini should not be used.&lt;/p&gt;
@@ -122,10 +122,10 @@ func main() {
     
     <item>
       <title>On Distributing Command line Applications: Why I switched from Ruby to Go</title>
-      <link>http://localhost:1313/blog/2013/07/21/on-distributing-command-line-applications-why-i-switched-from-ruby-to-go/</link>
+      <link>http://codegangsta.io/blog/2013/07/21/creating-cli-applications-in-go/</link>
       <pubDate>Sun, 21 Jul 2013 16:28:53 -0800</pubDate>
       
-      <guid>http://localhost:1313/blog/2013/07/21/on-distributing-command-line-applications-why-i-switched-from-ruby-to-go/</guid>
+      <guid>http://codegangsta.io/blog/2013/07/21/creating-cli-applications-in-go/</guid>
       <description>
 
 &lt;p&gt;For as long as I have been using it, my go-to language for creating CLI applications was Ruby. After all, Ruby is a robust, mature language with many things to make us developers want to gyrate with joy (okay maybe that is just me).&lt;/p&gt;
@@ -196,13 +196,13 @@ func main() {
     
     <item>
       <title>Practical Go: Build Tags</title>
-      <link>http://localhost:1313/blog/2013/07/11/practical-go-build-tags/</link>
+      <link>http://codegangsta.io/blog/2013/07/11/practical-go-build-tags/</link>
       <pubDate>Thu, 11 Jul 2013 16:23:17 -0800</pubDate>
       
-      <guid>http://localhost:1313/blog/2013/07/11/practical-go-build-tags/</guid>
+      <guid>http://codegangsta.io/blog/2013/07/11/practical-go-build-tags/</guid>
       <description>
 
-&lt;p&gt;In our &lt;a href=&#34;http://localhost:1313/blog/2013/07/08/practical-go-c-bindings/&#34;&gt;last post&lt;/a&gt; we wrote a simple set of bindings for libspotify in Go. By the end of the post we had an example compiling, but we had a bad API key for our spotify application. One obvious way to recify this would be to grab an API key if you are a Spotfy Premium user. Another workaround is to use a &lt;em&gt;mock&lt;/em&gt; library to make sure the code is working the way we want. We will link this mock library with &lt;strong&gt;Build tags.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In our &lt;a href=&#34;http://codegangsta.io/blog/2013/07/08/practical-go-c-bindings/&#34;&gt;last post&lt;/a&gt; we wrote a simple set of bindings for libspotify in Go. By the end of the post we had an example compiling, but we had a bad API key for our spotify application. One obvious way to recify this would be to grab an API key if you are a Spotfy Premium user. Another workaround is to use a &lt;em&gt;mock&lt;/em&gt; library to make sure the code is working the way we want. We will link this mock library with &lt;strong&gt;Build tags.&lt;/strong&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;mocking-spotify:213ae47dc89dbd60677f5d7fdbfb82a7&#34;&gt;Mocking Spotify&lt;/h2&gt;
 
@@ -298,10 +298,10 @@ session := Session{}
     
     <item>
       <title>Practical Go: C Bindings</title>
-      <link>http://localhost:1313/blog/2013/07/08/practical-go-c-bindings/</link>
+      <link>http://codegangsta.io/blog/2013/07/08/practical-go-c-bindings/</link>
       <pubDate>Mon, 08 Jul 2013 16:17:55 -0800</pubDate>
       
-      <guid>http://localhost:1313/blog/2013/07/08/practical-go-c-bindings/</guid>
+      <guid>http://codegangsta.io/blog/2013/07/08/practical-go-c-bindings/</guid>
       <description>
 
 &lt;p&gt;I have been playing with &lt;a href=&#34;http://golang.org/&#34;&gt;Go&lt;/a&gt; lately. The language itself has a lot going for it, one of which is a decent set of interop with existing C code. Today I am going to walk you through a practical example of how this is done by showing some code that I have been working on lately with Go.&lt;/p&gt;
@@ -436,10 +436,10 @@ collect2: ld returned 1 exit status
     
     <item>
       <title>Dependency Injection in Ruby</title>
-      <link>http://localhost:1313/blog/2013/04/04/dependency-injection-in-ruby/</link>
+      <link>http://codegangsta.io/blog/2013/04/04/dependency-injection-in-ruby/</link>
       <pubDate>Thu, 04 Apr 2013 16:03:55 -0800</pubDate>
       
-      <guid>http://localhost:1313/blog/2013/04/04/dependency-injection-in-ruby/</guid>
+      <guid>http://codegangsta.io/blog/2013/04/04/dependency-injection-in-ruby/</guid>
       <description>
 
 &lt;p&gt;Dynamically typed languages like Ruby are an interesting beast when it comes to dependency injection. The topic itself has been debated in the Ruby community every once in a while:&lt;/p&gt;
@@ -604,10 +604,10 @@ end
     
     <item>
       <title>A Warm Welcome from the Code Gangsta</title>
-      <link>http://localhost:1313/blog/2013/04/03/a-warm-welcome-from-the-code-gangsta/</link>
+      <link>http://codegangsta.io/blog/2013/04/03/a-warm-welcome-from-the-code-gangsta/</link>
       <pubDate>Wed, 03 Apr 2013 15:58:01 -0800</pubDate>
       
-      <guid>http://localhost:1313/blog/2013/04/03/a-warm-welcome-from-the-code-gangsta/</guid>
+      <guid>http://codegangsta.io/blog/2013/04/03/a-warm-welcome-from-the-code-gangsta/</guid>
       <description>
 
 &lt;p&gt;The day finally has arrived. I am starting a blog.&lt;/p&gt;
