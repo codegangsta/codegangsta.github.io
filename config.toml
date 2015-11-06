@@ -1,4 +1,4 @@
-baseurl = "http://codegangsta.io"
+baseurl = "https://codegangsta.io"
 languageCode = "en-us"
 title = "codegangsta.io"
 theme = "codegangsta"
