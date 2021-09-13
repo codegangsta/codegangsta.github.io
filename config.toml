@@ -1,19 +1,20 @@
-baseurl = "https://codegangsta.io"
+baseurl = "https://codegangsta.dev"
 languageCode = "en-us"
-title = "codegangsta.io"
-theme = "codegangsta"
+title = "codegangsta.dev"
 disqusShortname = "codegangsta"
 
 [author]
 name = "Jeremy Saenz"
 
-[params]
-theme = "theme-base-0d"
-tagline = "Awesome tools and screencasts for Go programmers."
-highlight = "github"
-github = "github.com/codegangsta"
+# Novela settings
+theme = "github.com/forestryio/hugo-theme-novela"
 
-[permalinks]
-# Optional. Change the permalink format for the 'post' content type.
-# The format shown here is the same one Jekyll/Octopress uses by default.
-post = "/blog/:year/:month/:day/:filename/"
+paginate = 6
+
+[social]
+twitter= "https://twitter.com/thecodegangsta"
+github= "https://github.com/codegangsta"
+
+[taxonomies]
+author = "authors"
+
