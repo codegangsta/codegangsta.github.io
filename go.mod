@@ -1,5 +1,5 @@
-module github.com/codegangsta/codegangsta.github.com
+module github.com/codegangsta/codegangsta.github.io
 
-go 1.16
+go 1.21
 
-require github.com/forestryio/hugo-theme-novela v0.0.0-20210222084032-5d015eef4c56 // indirect
+require github.com/a-h/templ v0.2.513 // indirect
