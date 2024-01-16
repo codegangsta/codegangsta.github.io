@@ -2,6 +2,7 @@
   "name": "codegangsta-github-io",
   "type": "module",
   "version": "0.0.1",
+  "packageManager": "pnpm@8.6.11",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
